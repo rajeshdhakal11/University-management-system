@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* Add horizontal scroll for small screens */
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        @media screen and (max-width: 600px) {
+            /* Responsive styles for small screens */
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+            input[type="text"],
+            input[type="email"],
+            select {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Course</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_name">Course Name:</label>
+            {{ form.name }}
+            <label for="id_coordinator">Course Coordinator:</label>
+            {{ form.coordinator }}
+            <label for="id_max_students">Maximum Size:</label>
+            {{ form.max_students }}
+            <button type="submit">Update</button>
+        </form>
+        <footer>
+            <a href="{% url 'home' %}">Home</a>
+        </footer>
+    </div>
+</body>
+</html>

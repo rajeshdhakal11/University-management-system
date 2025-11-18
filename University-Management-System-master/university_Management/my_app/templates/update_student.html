@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* Add horizontal scroll for small screens */
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        @media screen and (max-width: 600px) {
+            /* Responsive styles for small screens */
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="date"] {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Student</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_name">Name:</label>
+            <input type="text" id="id_name" name="name" value="{{ student.name }}" required><br>
+            <label for="id_email">Email:</label>
+            <input type="email" id="id_email" name="email" value="{{ student.email }}" required><br>
+            <label for="id_student_id">Student ID:</label>
+            <input type="text" id="id_student_id" name="student_id" value="{{ student.student_id }}" required><br>
+            <label for="id_date_of_birth">Date of Birth:</label>
+            <input type="date" id="id_date_of_birth" name="date_of_birth" value="{{ student.date_of_birth }}" required><br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+    <footer>
+        <a href="{% url 'home' %}">Home</a>
+    </footer>
+</body>
+</html>

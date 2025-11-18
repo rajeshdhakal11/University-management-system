@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Course</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error-msg {
+            color: red;
+            text-align: left;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        footer a {
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Add New Course</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="error-msg">
+                        {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                                <p>{{ field|title }}: {{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="id_name">Course Name:</label>
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    <label for="id_coordinator">Coordinator:</label>
+                    {{ form.coordinator }}
+                </div>
+                <div class="form-group">
+                    <label for="id_size">Size:</label>
+                    {{ form.size }}
+                </div>
+                <div class="form-group">
+                    <label for="id_max_students">Maximum Students:</label>
+                    {{ form.max_students }}
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <a href="{% url 'home' %}">Home</a>
+    </footer>
+</body>
+</html>
